@@ -1,0 +1,59 @@
+---
+#==============================================================================+
+# Description : Playbook to configure iptables for freeIPA server 
+#
+# Website     : https://github.com/fubralimited/ansible-catn-freeipa
+#
+# (c) Copyright:
+#               Fubra Limited
+#               Manor Coach House
+#               Church Hill
+#               Aldershot
+#               Hampshire
+#               GU12 4RQ
+#               UK
+#               http://www.fubra.com
+#               support@fubra.com
+#
+# License:
+#    Copyright (C) 2012-2013 Fubra Limited
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#==============================================================================+
+
+- name: Apply DNS/TCP firewalld rule
+  firewalld: port=53/tcp permanent=true state=enabled
+- name: Apply DNS/UDP firewalld rule
+  firewalld: port=53/udp permanent=true state=enabled
+- name: Apply HTTP/TCP firewalld rule
+  firewalld: port=80/tcp permanent=true state=enabled
+- name: Apply Kerberos—authentication system/TCP firewalld rule
+  firewalld: port=88/tcp permanent=true state=enabled
+- name: Apply Kerberos—authentication system/UDP firewalld rule
+  firewalld: port=88/udp permanent=true state=enabled
+- name: Apply NTP/UDP firewalld rule
+  firewalld: port=123/udp permanent=true state=enabled
+- name: Apply LDAP/TCP firewalld rule
+  firewalld: port=389/tcp permanent=true state=enabled
+- name: Apply HTTPS/TCP firewalld rule
+  firewalld: port=443/tcp permanent=true state=enabled
+- name: Apply Kerberos Change/Set password TCP firewalld rule
+  firewalld: port=464/tcp permanent=true state=enabled
+- name: Apply Kerberos Change/Set password UDP firewalld rule
+  firewalld: port=464/udp permanent=true state=enabled
+- name: Apply LDAPS/TCP firewalld rule
+  firewalld: port=636/tcp permanent=true state=enabled
+- name: Apply DOGTAG/ TCP firewalld rule
+  firewalld: port=7389/tcp permanent=true state=enabled

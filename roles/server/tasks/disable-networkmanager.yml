@@ -1,0 +1,5 @@
+---
+- name: Disable NetworkManager
+  service: name=NetworkManager state=stopped enabled=no
+- name: Enable network service
+  shell: /sbin/chkconfig network on

@@ -33,10 +33,10 @@
 #
 #==============================================================================+
 
-- name: Install ipa-server packages
-  yum: name={{ item }} state=present
+- name: Install freeipa-server packages
+  yum: name={{ item }} state=latest
   with_items:
-   - ipa-server 
+   - freeipa-server 
    - bind 
    - bind-dyndb-ldap
 

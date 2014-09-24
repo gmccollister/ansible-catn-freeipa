@@ -1,0 +1,7 @@
+---
+#- name: Fedora selinux state should be enforcing
+#  selinux: state=enforcing
+#  when: ansible_distribution == "Fedora"
+- name: CentOS selinux state should be disabled (until fixed)
+  selinux: state=disabled
+  when: ansible_distribution == "CentOS"
