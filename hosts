@@ -1,3 +1,6 @@
-[servers]
-identitymanagement-centos7 ansible_ssh_port=22 ansible_ssh_host=172.16.64.26 ansible_ssh_pass=novatech
-identitymanagement-fedora20 ansible_ssh_port=22 ansible_ssh_host=172.16.64.27 ansible_ssh_pass=novatech
+[freeipa-servers]
+ipaserver.centos7-freeipa.lab ansible_ssh_port=22 ansible_ssh_host=172.16.64.26 ansible_ssh_pass=novatech
+ipaserver.fedora20-freeipa.lab ansible_ssh_port=22 ansible_ssh_host=172.16.64.27 ansible_ssh_pass=novatech
+
+[freeipa-sssd-clients]
+orionlx-i686.centos7-freeipa.lab ansible_ssh_port=22 ansible_ssh_host=172.16.64.152 ansible_ssh_user=root
