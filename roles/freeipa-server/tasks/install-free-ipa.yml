@@ -39,4 +39,6 @@
    - freeipa-server 
    - bind 
    - bind-dyndb-ldap
+   - initscripts
+   - python-dns
 
