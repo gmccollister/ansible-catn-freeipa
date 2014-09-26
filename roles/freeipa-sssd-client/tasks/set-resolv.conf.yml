@@ -1,0 +1,3 @@
+---
+- name: Set /etc/resolv.conf
+  template: src=etc-resolv.conf.j2 dest=/etc/resolv.conf

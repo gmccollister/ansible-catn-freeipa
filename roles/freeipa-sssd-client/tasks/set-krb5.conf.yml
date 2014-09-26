@@ -1,0 +1,3 @@
+---
+- name: Set /etc/krb5.conf
+  template: src=etc-krb5.conf.j2 dest=/etc/krb5.conf

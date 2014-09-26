@@ -1,0 +1,8 @@
+#
+# /etc/hosts: static lookup table for host names
+#
+
+#<ip-address>      <hostname.domain.org>               <hostname>
+127.0.0.1         localhost.novatech.novatech-llc.com localhost
+
+{{ ansible_default_ipv4.address }}     {{ inventory_hostname }}   {{ inventory_hostname_short }}

@@ -1,0 +1,25 @@
+---
+- name: kinit admin
+  command: echo {{ hostvars['ipaserver.' ~ domain]['password'] }} | kinit admin
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: ipa host-show
+  command: ipa host-show {{ inventory_hostname }}
+  register: hostinfo
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: ipa host-add
+  command: ipa host-add --force --ip-address={{ ansible_default_ipv4.address }} {{ inventory_hostname }}
+  when: hostinfo.stdout.find('Host name') == -1
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: ipa host-add-managedby
+  command: ipa host-add-managedby --hosts={{ 'ipaserver.' ~ domain }} {{ inventory_hostname }}
+  when: "hostinfo.stdout.find('Managed by: ipaserver.' ~ domain) == -1"
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: ipa-getkeytab
+  command: ipa-getkeytab -s {{ 'ipaserver.' ~ domain }} -p host/{{ inventory_hostname }} -k /tmp/krb5.keytab
+  when: "hostinfo.stdout.find('Keytab: True') == -1"
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: fetch keytab
+  fetch: src=/tmp/krb5.keytab dest=keytabs/{{ inventory_hostname }}/krb5.keytab flat=yes fail_on_missing=yes
+  delegate_to: "{{ 'ipaserver.' ~ domain }}"
+- name: copy keytab
+  copy: src=keytabs/{{ inventory_hostname }}/krb5.keytab dest=/etc/krb5.keytab

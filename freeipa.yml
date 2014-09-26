@@ -33,17 +33,17 @@
 #
 #==============================================================================+
 
-- hosts: all
+- hosts: freeipa-servers
   user: root
   roles:
-    - common
+    - freeipa-server
 
-- hosts: servers
+- hosts: freeipa-clients
   user: root
   roles:
-    - server
+    - freeipa-client
 
-- hosts: clients
+- hosts: freeipa-sssd-clients
   user: root
   roles:
-    - client
+    - freeipa-sssd-client
