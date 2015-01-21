@@ -1,11 +1,12 @@
 ---
 - name: kinit admin
-  command: echo {{ hostvars['ipaserver.' ~ domain]['password'] }} | kinit admin
+  shell: echo {{ hostvars['ipaserver.' ~ domain]['password'] }} | kinit admin
   delegate_to: "{{ 'ipaserver.' ~ domain }}"
 - name: ipa host-show
   command: ipa host-show {{ inventory_hostname }}
   register: hostinfo
   delegate_to: "{{ 'ipaserver.' ~ domain }}"
+  ignore_errors: True
 - name: ipa host-add
   command: ipa host-add --force --ip-address={{ ansible_default_ipv4.address }} {{ inventory_hostname }}
   when: hostinfo.stdout.find('Host name') == -1
