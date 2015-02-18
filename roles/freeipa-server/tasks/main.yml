@@ -34,16 +34,17 @@
 #==============================================================================+
 - include: install-free-ipa.yml
 - include: disable-networkmanager.yml
+  when: inventory_hostname == '127.0.0.1'
 - include: selinux-state.yml
 - include: firewalld-config.yml
+- include: set-system-network-ifcfg.yml
+  when: inventory_hostname == '127.0.0.1' and host_interface is defined
 - include: set-system-hostname.yml
   when: inventory_hostname != '127.0.0.1'
-- include: set-hosts.yml
-  when: inventory_hostname != '127.0.0.1'
-- include: set-resolv.conf.yml
-  when: inventory_hostname != '127.0.0.1'
-- include: set-ifcfg-eth0.yml
-  when: inventory_hostname != '127.0.0.1'
+#- include: set-hosts.yml
+#  when: inventory_hostname != '127.0.0.1'
+#- include: set-resolv.conf.yml
+#  when: inventory_hostname != '127.0.0.1'
 #- include: iptables-config.yml
 - include: free-ipa-setup.yml
   when: inventory_hostname != '127.0.0.1'

@@ -1,6 +1,6 @@
 ---
 #==============================================================================+
-# Description : Playbook to set the system name of the freeIPA server 
+# Description : Variable file containing all common vars for a freeIPA install
 #
 # Website     : https://github.com/fubralimited/ansible-catn-freeipa
 #
@@ -32,6 +32,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #==============================================================================+
-
-- name: Creates the /etc/sysconfig/network-scrips/ifcfg-eth0 file 
-  template: src=etc-sysconfig-network-scripts-ifcfg-eth0.j2 dest=/etc/sysconfig/network-scripts/ifcfg-eth0
+#server FreeIPA variables
+freeipaserver_ip: 172.16.64.26
+hostname: ipaserver.centos7-freeipa.lab
+domain_search: centos7-freeipa.lab
+password: novatech
+kerberos_realm_name: CENTOS7-FREEIPA.LAB
+directory_manager_password: novatech

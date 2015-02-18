@@ -1,3 +1,5 @@
+includedir /var/lib/sss/pubconf/krb5.include.d/
+
 [logging]
  default = FILE:/var/log/krb5libs.log
  kdc = FILE:/var/log/krb5kdc.log
@@ -6,19 +8,18 @@
 [libdefaults]
  default_realm = {{ domain | upper }}
  dns_lookup_realm = false
- dns_lookup_kdc = false
+ dns_lookup_kdc = true
  rdns = false
  ticket_lifetime = 24h
  forwardable = yes
- allow_weak_crypto = true
 
 [realms]
- CENTOS7-FREEIPA.LAB = {
-  kdc = ipaserver.{{ domain }}:88
-  admin_server = ipaserver.{{ domain }}:749
+ {{ domain | upper }} = {
+  kdc = {{ ipaserver_hostname }}:88
+  admin_server = {{ ipaserver_hostname }}:749
   default_domain = {{ domain }}
 }
 
 [domain_realm]
  .{{ domain }} = {{ domain | upper }}
-{{ domain }} = {{ domain | upper }}
+ {{ domain }} = {{ domain | upper }}

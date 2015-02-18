@@ -1,5 +1,9 @@
 ---
 - name: Disable NetworkManager
   service: name=NetworkManager state=stopped enabled=no
+- name: Disable Network Manager control
+  lineinfile: dest={{ item }} regexp=^NM_CONTROLLED= line=NM_CONTROLLED=no
+  with_fileglob:
+    - /etc/sysconfig/network-scripts/ifcfg-*
 - name: Enable network service
   shell: /sbin/chkconfig network on

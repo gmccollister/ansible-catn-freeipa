@@ -1,0 +1,15 @@
+---
+- name: Set system IP
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^IPADDR= line=IPADDR={{ host_ipaddr }}
+- name: Set system netmask
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^NETMASK= line=NETMASK={{ host_netmask }}
+- name: Set system gateway
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^GATEWAY= line=GATEWAY={{ host_gateway }}
+- name: Set system dns server 1
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^DNS1= line=DNS1={{ host_dns1 }}
+  when: host_dns1 is defined
+- name: Set system dns server 2
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^DNS2= line=DNS2={{ host_dns2 }}
+  when: host_dns2 is defined
+- name: Set system bootproto to static
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-{{ host_interface }} regexp=^BOOTPROTO= line=BOOTPROTO=static

@@ -37,6 +37,7 @@
   yum: name={{ item }} state=latest
   with_items:
    - freeipa-server 
+   - freeipa-server-trust-ad
    - bind 
    - bind-dyndb-ldap
    - initscripts

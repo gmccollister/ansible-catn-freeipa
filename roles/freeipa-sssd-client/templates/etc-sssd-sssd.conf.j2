@@ -1,20 +1,25 @@
-[sssd]
-config_file_version = 2
-services = nss, pam
-
-domains = {{ domain }}
 [nss]
 
 [pam]
 
+[ssh]
+
+[pac]
+
+[sssd]
+config_file_version = 2
+services = nss, pam, ssh, pac
+domains = {{ domain }}
+
 [domain/{{ domain }}]
 cache_credentials = True
 krb5_store_password_if_offline = True
-ipa_domain = {{ domain }}
+ipa_domain = {{ ipaserver_domain }}
 id_provider = ipa
 auth_provider = ipa
 access_provider = ipa
 ipa_hostname = {{ inventory_hostname }}
 chpass_provider = ipa
-ipa_server = ipaserver.{{ domain }}
-ldap_tls_cacert = /etc/ipa/ca.crt
+legacy_passwds_provider = ipa
+ipa_server = _srv_, {{ ipaserver_hostname }}
+subdomains_provider = ipa

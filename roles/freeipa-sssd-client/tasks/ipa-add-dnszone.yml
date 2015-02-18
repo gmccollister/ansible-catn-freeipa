@@ -1,0 +1,13 @@
+---
+- name: kinit admin
+  shell: echo {{ hostvars[ipaserver_hostname]['password'] }} | kinit admin
+  delegate_to: "{{ ipaserver_hostname }}"
+- name: ipa dnszone-show
+  command: ipa dnszone-show {{ domain }}
+  register: dnszoneinfo
+  delegate_to: "{{ ipaserver_hostname }}"
+  ignore_errors: True
+- name: ipa dnszone-add
+  command: ipa dnszone-add --force {{ domain }}
+  when: dnszoneinfo.stdout.find('Zone name') == -1
+  delegate_to: "{{ ipaserver_hostname }}"

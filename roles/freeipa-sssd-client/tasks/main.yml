@@ -1,4 +1,5 @@
 ---
+- include: ipa-add-dnszone.yml
 - include: ipa-add-host.yml
 - include: set-hosts.yml
 - include: set-krb5.conf.yml

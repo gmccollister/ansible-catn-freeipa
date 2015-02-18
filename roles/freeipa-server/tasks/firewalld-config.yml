@@ -57,3 +57,15 @@
   firewalld: port=636/tcp permanent=true state=enabled
 - name: Apply DOGTAG/ TCP firewalld rule
   firewalld: port=7389/tcp permanent=true state=enabled
+- name: Apply netbios-dgm/tcp firewalld rule
+  firewalld: port=138/tcp permanent=true state=enabled
+- name: Apply netbios-dgm/udp firewalld rule
+  firewalld: port=138/udp permanent=true state=enabled
+- name: Apply netbios-ssn/tcp firewalld rule
+  firewalld: port=139/tcp permanent=true state=enabled
+- name: Apply netbios-ssn/udp firewalld rule
+  firewalld: port=139/udp permanent=true state=enabled
+- name: Apply microsoft-ds/tcp firewalld rule
+  firewalld: port=445/tcp permanent=true state=enabled
+- name: Apply microsoft-ds/udp firewalld rule
+  firewalld: port=445/udp permanent=true state=enabled
