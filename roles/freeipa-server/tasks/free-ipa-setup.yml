@@ -35,6 +35,7 @@
 
 - name: Setup FreeIPA server
   command: ipa-server-install -a {{ password }} --hostname={{ hostname }} -r {{ kerberos_realm_name }} -p {{ directory_manager_password }} -n {{ domain_search }} -U --setup-dns --no-forwarders --idmax=49999 --idstart=10000 --no-ntp
+  register: ipa_server_install_result
   args:
     creates: /var/lib/ipa/sysrestore/sysrestore.state
 - name: Create NovaTech legacy host policy plugin directory
@@ -45,7 +46,6 @@
   file: path=/usr/share/ipa/ui/js/plugins/legacy_password state=directory
 - name: Download NovaTech legacy password plugin
   get_url: url=http://172.16.64.3/~kevinu/novatech-freeipa/legacy_password.js dest=/usr/share/ipa/ui/js/plugins/legacy_password/legacy_password.js
-- name: Setup FreeIPA AD trust
-  command: ipa-adtrust-install -a {{ password }} --add-sids -U
-  args:
-    removes: /var/lib/ipa/sysrestore/sysrestore.state
+#- name: Setup FreeIPA AD trust
+#  command: ipa-adtrust-install -a {{ password }} --add-sids -U
+#  when: ipa_server_install_result|success

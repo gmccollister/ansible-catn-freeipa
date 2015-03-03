@@ -35,3 +35,6 @@
 
 - name: restart iptables
   service: name=iptables state=restarted
+- name: Setup FreeIPA AD trust
+  command: ipa-adtrust-install -a {{ password }} --add-sids -U
+  when: ipa_server_install_result|success
