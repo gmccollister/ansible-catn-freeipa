@@ -46,6 +46,6 @@
   file: path=/usr/share/ipa/ui/js/plugins/legacy_password state=directory
 - name: Download NovaTech legacy password plugin
   get_url: url=http://172.16.64.3/~kevinu/novatech-freeipa/legacy_password.js dest=/usr/share/ipa/ui/js/plugins/legacy_password/legacy_password.js
-#- name: Setup FreeIPA AD trust
-#  command: ipa-adtrust-install -a {{ password }} --add-sids -U
-#  when: ipa_server_install_result|success
+- name: Setup FreeIPA AD trust
+  command: ipa-adtrust-install -a {{ password }} --add-sids -U
+  when: ipa_server_install_result|success and install_ad_trust
