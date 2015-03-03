@@ -1,5 +1,5 @@
 ---
 ipaserver_hostname: ipaserver.centos7-freeipa.lab
-domain: demo.centos7-freeipa.lab
+domain: centos7-freeipa.lab
 ipaserver_domain: centos7-freeipa.lab
 nameserver: 172.16.64.26

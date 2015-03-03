@@ -33,7 +33,7 @@
 #
 #==============================================================================+
 #server FreeIPA variables
-freeipaserver_ip: 172.16.64.26
+#freeipaserver_ip: 172.16.64.26
 hostname: ipaserver.centos7-freeipa.lab
 domain_search: centos7-freeipa.lab
 password: novatech
