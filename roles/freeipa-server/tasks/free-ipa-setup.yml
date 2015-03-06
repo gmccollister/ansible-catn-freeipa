@@ -34,7 +34,7 @@
 #==============================================================================+
 
 - name: Setup FreeIPA server
-  command: ipa-server-install -a {{ password }} --hostname={{ hostname }} -r {{ kerberos_realm_name }} -p {{ directory_manager_password }} -n {{ domain_search }} -U --setup-dns --no-forwarders --idmax=49999 --idstart=10000 --no-ntp
+  command: ipa-server-install -a {{ password }} --hostname={{ hostname }} -r {{ kerberos_realm_name }} -p {{ directory_manager_password }} -n {{ domain }} -U --setup-dns --no-forwarders --idmax=49999 --idstart=10000 --no-ntp
   register: ipa_server_install_result
   args:
     creates: /var/lib/ipa/sysrestore/sysrestore.state
