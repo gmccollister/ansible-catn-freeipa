@@ -39,4 +39,5 @@ domain: centos7-freeipa.lab
 password: novatech
 kerberos_realm_name: CENTOS7-FREEIPA.LAB
 directory_manager_password: novatech
+setup_dns: true
 install_ad_trust: false
