@@ -33,6 +33,7 @@
 #
 #==============================================================================+
 - include: install-free-ipa.yml
+  when: inventory_hostname == '127.0.0.1'
 #- include: disable-networkmanager.yml
 #  when: inventory_hostname == '127.0.0.1'
 - include: selinux-state.yml
