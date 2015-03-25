@@ -53,6 +53,12 @@
   file: path=/usr/share/ipa/ui/js/plugins/legacy_password state=directory
 - name: Download NovaTech legacy password plugin
   get_url: url=http://172.16.64.3/~kevinu/novatech-freeipa/legacy_password.js dest=/usr/share/ipa/ui/js/plugins/legacy_password/legacy_password.js
+- name: Create NovaTech legacy configuration management plugin directory
+  file: path=/usr/share/ipa/ui/js/plugins/legacy_cfgmgmt state=directory
+- name: Download NovaTech legacy configuration management plugin
+  get_url: url=http://172.16.64.3/~kevinu/novatech-freeipa/legacy_cfgmgmt.js dest=/usr/share/ipa/ui/js/plugins/legacy_cfgmgmt/legacy_cfgmgmt.js
+- name: Download NovaTech legacy configuration management ansible playbook
+  get_url: url=http://172.16.64.3/~kevinu/novatech-freeipa/cfgmgmt.yml dest=/usr/share/ipa/ui/js/plugins/legacy_cfgmgmt/cfgmgmt.yml
 - name: Setup FreeIPA AD trust
   command: ipa-adtrust-install -a {{ password }} --add-sids -U
   when: inventory_hostname != '127.0.0.1' and ipa_server_install_result|success and install_ad_trust
