@@ -15,6 +15,10 @@
   command: ipa host-add-managedby --hosts={{ ipaserver_hostname }} {{ inventory_hostname }}
   when: "hostinfo.stdout.find('Managed by: ' ~ ipaserver_hostname) == -1"
   delegate_to: "{{ ipaserver_hostname }}"
+- name: remove prior keytab file
+  file: path=/tmp/krb5.keytab state=absent
+  when: "hostinfo.stdout.find('Keytab: True') == -1"
+  delegate_to: "{{ ipaserver_hostname }}"
 - name: ipa-getkeytab
   command: ipa-getkeytab -s {{ ipaserver_hostname }} -p host/{{ inventory_hostname }} -k /tmp/krb5.keytab
   when: "hostinfo.stdout.find('Keytab: True') == -1"
