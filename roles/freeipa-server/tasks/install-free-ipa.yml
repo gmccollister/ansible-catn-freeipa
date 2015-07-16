@@ -40,6 +40,4 @@
    - freeipa-server-trust-ad
    - bind 
    - bind-dyndb-ldap
-   - initscripts
-   - python-dns
 
